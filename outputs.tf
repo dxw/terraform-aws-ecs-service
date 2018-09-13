@@ -17,3 +17,11 @@ output "lb_dns_name" {
     element(concat(aws_alb.main.*.dns_name, list("")), 0) : ""
   }"
 }
+
+output "lb_target_group_arn" {
+  description = "Loadbalancer Target Group ARN"
+
+  value = "${var.enable_lb ?
+    element(concat(aws_alb_target_group.main.*.arn, list("")), 0) : ""
+  }"
+}
