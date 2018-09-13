@@ -23,3 +23,9 @@ output "task_definition_arn" {
 
   value = "${aws_ecs_task_definition.main.arn}"
 }
+
+output "lb_target_group_arn" {
+  description = "Loadbalancer Target Group ARN"
+
+  value = "${var.enable_lb ? aws_alb_target_group.main.arn : "" }"
+}
