@@ -1,4 +1,4 @@
-# AWS Terraform module to create Farage / ECS service
+# AWS Terraform module to create Fargate / ECS service
 
 This modules creates a Fargate or ECS service optionally with a application load balancer.
 - Supports network modes: "awsvpc" and "bridge"
@@ -160,3 +160,4 @@ module "blog" {
 | lb_dns_name | Load Balancer DNS Name. |
 | task_definition_arn | Task definition ARN. |
 | lb_target_group_arn | Load Balancer Target Group ARN. |
+| lb_arn | Load Balancer ARN. |
