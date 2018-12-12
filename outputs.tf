@@ -26,6 +26,14 @@ output "lb_arn" {
   }"
 }
 
+output "lb_zone_id" {
+  description = "Loadbalancer Zone ID"
+
+  value = "${var.enable_lb ?
+    element(concat(aws_alb.main.*.zone_id, list("")), 0) : ""
+  }"
+}
+
 output "task_definition_arn" {
   description = "Task definition ARN"
 
@@ -45,5 +53,13 @@ output "lb_listener_arn" {
 
   value = "${var.enable_lb ?
     element(concat(aws_alb_listener.main.*.arn, list("")), 0) : ""
+  }"
+}
+
+output "lb_security_group_id" {
+  description = "Loadbalancer Security Group id"
+
+  value = "${var.enable_lb ?
+    element(concat(aws_security_group.alb_sg.*.id, list("")), 0) : ""
   }"
 }

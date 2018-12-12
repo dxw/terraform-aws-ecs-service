@@ -151,6 +151,7 @@ module "blog" {
 | task_role_arn | The AWS IAM role that will be provided to the task to perform AWS actions. | string | `` | no |
 | vpc_cidr | CIDR for the VPC. | string | - | yes |
 | vpc_id | ID of the VPC. | string | - | yes |
+| public_alb_whitelist | Whitelists IP to be able to access ALB | list | ["0.0.0.0/0","::/0"] | no |
 
 ## Outputs
 
@@ -162,3 +163,4 @@ module "blog" {
 | lb_target_group_arn | Load Balancer Target Group ARN. |
 | lb_arn | Load Balancer ARN. |
 | lb_listener_arn | Load Balancer Listener ARN. |
+| lb_security_group_id | Load Balancer Security Group ID. |
