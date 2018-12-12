@@ -5,7 +5,7 @@ resource "aws_alb" "main" {
 
   internal        = "${var.lb_internal}"
   subnets         = ["${var.lb_subnetids}"]
-  security_groups = ["${aws_security_group.alb_sg.id}"]
+  security_groups = ["${var.lb_security_group_id != "" ? var.lb_security_group_id : aws_security_group.alb_sg.id}"]
 
   tags {
     Name        = "${var.environment}-${var.service_name}"
@@ -51,7 +51,7 @@ resource "aws_alb_target_group" "main" {
 }
 
 resource "aws_security_group" "alb_sg" {
-  count = "${var.enable_lb ? 1 : 0}"
+  count = "${var.enable_lb ? var.lb_security_group_id != "" : 0 ? 1 : 0}"
 
   name        = "${var.environment}-${var.service_name}-alb-sg"
   description = "controls access to the application LB"
